@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Icon Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+  <h1>AI Icon Generator</h1>
+  <h2>by mastergyu</h2>
+
+  <div class="form">
+    <label for="keyword">
+      Masukkan Kata Kunci
+    </label>
+    <input type="text" id="keyword" placeholder="Contoh: Kota Padang" />
+    <button onclick="autoFillKeyword()">✨ Ide Pilihan AI</button>
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" id="imageOnly" /> Buat Prompt Berdasarkan Gambar Saja</label>
+      <label><input type="checkbox" id="customMode" /> Kustomisasi</label>
+      <label><input type="checkbox" id="addKeywordTitle" /> Tambahkan judul sesuai kata kunci di atas kanvas</label>
+    </div>
+
+    <label for="iconNumber">Jumlah Ikon</label>
+    <select id="iconNumber" onchange="toggleCustom('iconNumber')">
+      <option selected>None</option>
+      <option>1 Icon (1x1)</option>
+      <option>2 Icons (2x1)</option>
+      <option>3 Icons (3x1)</option>
+      <option>4 Icons (2x2)</option>
+      <option>6 Icons (3x2)</option>
+      <option>8 Icons (4x2)</option>
+      <option>9 Icons (3x3)</option>
+      <option>12 Icons (4x3)</option>
+      <option>16 Icons (4x4)</option>
+      <option>20 Icons (5x4)</option>
+      <option>25 Icons (5x5)</option>
+      <option>36 Icons (6x6)</option>
+      <option>48 Icons (6x8)</option>
+      <option>64 Icons (8x8)</option>
+      <option>81 Icons (9x9)</option>
+      <option>100 Icons (10x10)</option>
+      <option>144 Icons (12x12)</option>
+      <option>196 Icons (14x14)</option>
+      <option>225 Icons (15x15)</option>
+      <option>256 Icons (16x16)</option>
+      <option>324 Icons (18x18)</option>
+      <option>400 Icons (20x20)</option>
+      <option>Custom...</option>
+    </select>
+    <input type="text" id="iconNumberCustom" placeholder="Contoh: 7x3" style="display:none" />
+
+    <label for="angle">Sudut Kamera / Perspektif</label>
+    <select id="angle" onchange="toggleCustom('angle')">
+      <option>None</option>
+      <option>Isometric</option>
+      <option>Top-down</option>
+      <option>Side View</option>
+      <option>Flat</option>
+      <option>3D</option>
+      <option>Overhead</option>
+      <option>Front-facing</option>
+      <option>Low angle</option>
+      <option>High angle</option>
+      <option>Perspective Tilt</option>
+      <option>Close-up</option>
+      <option>Zoomed-out</option>
+      <option>Wide angle</option>
+      <option>Bird's eye</option>
+      <option>Worm's eye</option>
+      <option>Oblique</option>
+      <option>Axonometric</option>
+      <option>Orthographic</option>
+      <option>Dynamic angle</option>
+      <option>Surreal angle</option>
+      <option>Cinematic</option>
+      <option>Custom...</option>
+    </select>
+    <input type="text" id="angleCustom" placeholder="Masukkan sudut kustom" style="display:none" />
+
+    <label for="style">Gaya Ikon</label>
+    <select id="style" onchange="toggleCustom('style')">
+      <option>None</option>
+      <option>Flat Design</option>
+      <option>3D Render</option>
+      <option>3D C4D-STYLE</option>
+      <option>Plastic Style</option>
+      <option>Glass Style</option>
+      <option>Origami</option>
+      <option>Paper Cut</option>
+      <option>Chalkboard</option>
+      <option>Watercolor</option>
+      <option>Claymation</option>
+      <option>Doodle</option>
+      <option>Realistic Render</option>
+      <option>Isometric Vector</option>
+      <option>Anime Style</option>
+      <option>Lofi Style</option>
+      <option>Steampunk</option>
+      <option>Futuristic</option>
+      <option>Cyberpunk</option>
+      <option>Retro Style</option>
+      <option>Vaporwave</option>
+      <option>Minimalist</option>
+      <option>Monoline</option>
+      <option>Sketch</option>
+      <option>Comic Style</option>
+      <option>Manga Style</option>
+      <option>Neon Glow</option>
+      <option>Duotone</option>
+      <option>Hand-Drawn</option>
+      <option>Plastic Toy</option>
+      <option>Gradient Flat</option>
+      <option>3D Plastic</option>
+      <option>Woodcut</option>
+      <option>Pixelated Vector</option>
+      <option>Blueprint Style</option>
+      <option>Shadow Icon</option>
+      <option>UI Glyph</option>
+      <option>Material Design</option>
+      <option>Realistic Photo</option>
+      <option>Graffiti</option>
+      <option>Cartoon</option>
+      <option>Vector Icon</option>
+      <option>Ink Brush</option>
+      <option>Textured Flat</option>
+      <option>Noise Gradient</option>
+      <option>3D Soft</option>
+      <option>Hyperrealistic</option>
+      <option>Blender Style</option>
+      <option>Vector Grid</option>
+      <option>Isometric Voxel</option>
+      <option>Spray Paint</option>
+      <option>Cut-out Shape</option>
+      <option>Marker Pen</option>
+      <option>Retro Sticker</option>
+      <option>Bubble Icon</option>
+      <option>Paper Collage</option>
+      <option>Origami Folded</option>
+      <option>3D Wireframe</option>
+      <option>Noise Textured</option>
+      <option>Hollow Line</option>
+      <option>Dynamic Icon</option>
+      <option>Sketch Line</option>
+      <option>Multi-layer Flat</option>
+      <option>Layered 3D</option>
+      <option>Abstract Shape</option>
+      <option>Glow Line</option>
+      <option>Light Beam</option>
+      <option>Grunge Style</option>
+      <option>AI Line Style</option>
+      <option>Plastic Shine</option>
+      <option>Voxel Art</option>
+      <option>AR Interface</option>
+      <option>Monochrome Fill</option>
+      <option>Framed Icon</option>
+      <option>Bordered Icon</option>
+      <option>Depth Line</option>
+      <option>Blueprint Render</option>
+      <option>Vintage Print</option>
+      <option>Pixel Mosaic</option>
+      <option>Transparent Line</option>
+      <option>Hologram</option>
+      <option>Dashboard UI</option>
+      <option>Minimal Depth</option>
+      <option>Bubble Flat</option>
+      <option>Soft Glow</option>
+      <option>Embossed</option>
+      <option>Carved Wood</option>
+      <option>Inked Stamp</option>
+      <option>Scratch Style</option>
+      <option>Circuit Icon</moption>
+      <option>Data Glyph</option>
+      <option>Puzzle Cut</option>
+      <option>Low Poly</option>
+      <option>Smooth Vector</option>
+      <option>Shaded Flat</option>
+      <option>Jittery Line</option>
+      <option>Abstract Fill</option>
+      <option>Creative Combo</option>
+      <option>Crosshatched</option>
+      <option>Blend Flat</option>
+      <option>Custom...</option>
+    </select>
+    <input type="text" id="styleCustom" placeholder="Masukkan gaya kustom" style="display:none" />
+
+    <label for="palette">Tema Palet Warna</label>
+    <select id="palette" onchange="toggleCustom('palette')">
+      <option selected>None</option>
+      <option>Ice Blue</option>
+      <option>Sunset Coral</option>
+      <option>Mint Cream</option>
+      <option>Lavender Dream</option>
+      <option>Retro Teal</option>
+      <option>Neon Pop</option>
+      <option>Warm Earth</option>
+      <option>Midnight Sky</option>
+      <option>Pink Punch</option>
+      <option>Ocean Mist</option>
+      <option>Forest Fern</option>
+      <option>Sand Dune</option>
+      <option>Mocha Glow</option>
+      <option>Peach Blush</option>
+      <option>Lemon Zest</option>
+      <option>Sky Breeze</option>
+      <option>Cherry Bloom</option>
+      <option>Arctic Night</option>
+      <option>Soft Clay</option>
+      <option>Bubblegum Pop</option>
+      <option>Foggy Lilac</option>
+      <option>Moss Green</option>
+      <option>Graphite Cool</option>
+      <option>Blush Beige</option>
+      <option>Seafoam Pearl</option>
+      <option>Navy Rose</option>
+      <option>Terracotta Tone</option>
+      <option>Cloud White</option>
+      <option>Salmon Berry</option>
+      <option>Stone Grey</option>
+      <option>Citrus Splash</option>
+      <option>Amber Dust</option>
+      <option>Pine Shadow</option>
+      <option>Denim Light</option>
+      <option>Apricot Mist</option>
+      <option>Tropical Leaf</option>
+      <option>Rustic Sand</option>
+      <option>Silver Frost</option>
+      <option>Wine Plum</option>
+      <option>Teal Whisper</option>
+      <option>Aqua Mint</option>
+      <option>Cranberry Ice</option>
+      <option>Mustard Pop</option>
+      <option>Olive Fog</option>
+      <option>Snow Grape</option>
+      <option>Honey Drift</option>
+      <option>Maroon Glow</option>
+      <option>Blueberry Frost</option>
+      <option>Glacier Aqua</option>
+      <option>Cocoa Pebble</option>
+      <option>Pastel Moss</option>
+      <option>Coral Dust</option>
+      <option>Mango Cream</option>
+      <option>Blue Slate</option>
+      <option>Ivory Sun</option>
+      <option>Lemon Ice</option>
+      <option>Lilac Breeze</option>
+      <option>Cinnamon Milk</option>
+      <option>Frosty Sky</option>
+      <option>Banana Milk</option>
+      <option>Sea Salt</option>
+      <option>Pink Haze</option>
+      <option>Electric Teal</option>
+      <option>Mauve Dust</option>
+      <option>Spring Meadow</option>
+      <option>Caramel Ice</option>
+      <option>Rose Sand</option>
+      <option>Arctic Cloud</option>
+      <option>Plum Cream</option>
+      <option>Celadon Mist</option>
+      <option>Cactus Fog</option>
+      <option>Soft Amber</option>
+      <option>Moon Lavender</option>
+      <option>Storm Cloud</option>
+      <option>Canary Glow</option>
+      <option>Midnight Violet</option>
+      <option>Ash Peach</option>
+      <option>Vintage Rose</option>
+      <option>Cloud Blue</option>
+      <option>Mint Sky</option>
+      <option>Light Charcoal</option>
+      <option>Tangerine Cream</option>
+      <option>Milky Olive</option>
+      <option>Indigo Ice</option>
+      <option>Blush Coral</option>
+      <option>Cappuccino Foam</option>
+      <option>Powder Lemon</option>
+      <option>Fog Mint</option>
+      <option>Coffee Cream</option>
+      <option>Dusty Peach</option>
+      <option>Faded Teal</option>
+      <option>Green Tea</option>
+      <option>Pale Blush</option>
+      <option>Autumn Smoke</option>
+      <option>Rosewater</option>
+      <option>Sky Pearl</moption>
+      <option>Lilac Stone</option>
+      <option>Glacier Pink</option>
+      <option>Pastel Navy</option>
+      <option>Soft Pistachio</option>
+      <option>Custom...</option>
+    </select>
+    <input type="text" id="paletteCustom" placeholder="Masukkan palet kustom" style="display:none" />
+
+    <label for="background">Kanvas Latar Belakang</label>
+    <select id="background" onchange="toggleCustom('background')">
+      <option>None</option>
+      <option>White</option>
+      <option>Transparent</option>
+      <option>Dark</option>
+      <option>Gradient</option>
+      <option>Sky Blue</option>
+      <option>Patterned</option>
+      <option>Textured</option>
+      <option>Blurred</option>
+      <option>Soft Glow</option>
+      <option>Grid</option>
+      <option>Retro Wallpaper</option>
+      <option>Illustrated Scene</moption>
+      <option>Studio Lighting</option>
+      <option>Futuristic Environment</option>
+      <option>Custom...</option>
+    </select>
+    <input type="text" id="backgroundCustom" placeholder="Masukkan latar belakang kustom" style="display:none" />
+
+    <label for="embedText">Sematkan Teks (opsional)</label>
+    <input type="text" id="embedText" placeholder="Contoh: Nama atau judul ikon" />
+
+    <label for="aiModel">Pilih Model AI untuk Generasi Gambar</label>
+    <select id="aiModel">
+      <option value="imagen">Google Imagen (Default)</option>
+      <option value="dalle">OpenAI DALL-E</option>
+    </select>
+
+    <button onclick="generatePrompt()">Buat Prompt Ikon</button>
+  </div>
+
+  <div class="result">
+    <div class="prompt-header">
+      <h3>Prompt yang Dihasilkan:</h3>
+      <button class="copy-button" onclick="copyPrompt()">
+        <i class="fas fa-copy"></i>
+        <span id="copyFeedback" class="copy-feedback">Tersalin!</span>
+      </button>
+    </div>
+    <textarea id="output" readonly></textarea>
+  </div>
+
+  <div class="result-image" id="imageResultSection">
+    <div class="loading-spinner" id="loadingSpinner"></div>
+    <p id="imageError" style="color: red; margin-top: 10px; display: none;"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
